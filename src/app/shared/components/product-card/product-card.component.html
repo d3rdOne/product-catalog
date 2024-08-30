@@ -1,0 +1,37 @@
+<ion-card class="">
+  <div class="h-28 bg-stone-400"></div>
+  <ion-card-header>
+    <ion-card-subtitle>
+      <div class="h-4 text-xs mt-1">
+        <div
+          *ngIf="product.discount > 0"
+          class="px-1 bg-yellow-500 text-stone-800 w-fit lowercase"
+        >
+          {{ product.discount }}% off
+        </div>
+      </div>
+    </ion-card-subtitle>
+    <ion-card-title class="text-lg sm:text-xl">
+      <div>{{ product.name }}</div>
+    </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content class="">
+    <div class="text-xs sm:text-sm line-clamp-2">
+      {{ product.description }}
+    </div>
+
+    <div class="mt-2 mb-1 w-full text-base flex flex-wrap gap-2">
+      <span
+        [ngClass]="{
+          'line-through font-extralight hidden sm:block': product.discount > 0,
+          'text-stone-200 font-bold': product.discount <= 0
+        }"
+        >{{ product.price | currency : "" : "$" : "1.0-2" }}</span
+      >
+      <span class="font-bold text-stone-200" *ngIf="product.discount > 0">{{
+        (product.price * product.discount) / 100 | currency : "" : "$" : "1.0-2"
+      }}</span>
+    </div>
+  </ion-card-content>
+</ion-card>
