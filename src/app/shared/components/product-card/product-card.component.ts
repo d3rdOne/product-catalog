@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IonCard, IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { Product } from '../../models/product';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 
@@ -11,10 +11,12 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
   imports: [CommonModule, IonicModule, CurrencyPipe]
 })
 export class ProductCardComponent  {
-
+  /**
+   * Product data to be displayed in the card
+   * @type {Product}
+   * @see {@link Product}
+   */
   @Input()
   product!: Product;
-
-  constructor() { }
 
 }
