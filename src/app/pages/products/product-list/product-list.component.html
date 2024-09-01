@@ -1,0 +1,51 @@
+<div class="">
+  <div class="flex flex-wrap justify-between">
+    <ion-searchbar
+      [debounce]="1000"
+      [value]="searchValue"
+      (ionInput)="onSearchInput($event)"
+      show-clear-button="always"
+      color="light"
+      class="w-full md:w-96"
+    ></ion-searchbar>
+
+    <ion-item class="p-2">
+      <ion-select
+        aria-label="Price Sort"
+        interface="popover"
+        placeholder="Sort Price"
+        [value]="priceSort"
+        color="light"
+        (ionChange)="onSortChange($event)"
+      >
+        <ion-select-option [value]="SortOrder.ASC">Asc</ion-select-option>
+        <ion-select-option [value]="SortOrder.DESC"
+          >Desc</ion-select-option
+        ></ion-select
+      >
+    </ion-item>
+  </div>
+
+  <div class="">
+    <ng-container *ngIf="productList$ | async as productList">
+      <ng-container *ngIf="productList.length > 0; else noData">
+        <div
+          class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 row-auto-rows justify-center"
+        >
+          <ng-container *ngFor="let product of productList">
+            <app-product-card
+              [product]="product"
+              (click)="navigateToDetails(product.id)"
+              class="cursor-pointer"
+            ></app-product-card>
+          </ng-container>
+        </div>
+      </ng-container>
+      <ng-template #noData>
+        <div class="min-h-96 flex justify-center items-center">
+          <ion-text color="medium">No products found </ion-text>
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+</div>

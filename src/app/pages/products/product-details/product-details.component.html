@@ -1,0 +1,55 @@
+<ion-breadcrumbs>
+  <ion-breadcrumb [routerLink]="['/products/list']">Products</ion-breadcrumb>
+  <ion-breadcrumb>{{ product.name }}</ion-breadcrumb>
+</ion-breadcrumbs>
+
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+  <div class="col-span-1">
+    <div class="h-full w-full mt-4 sm:mt-6">
+      <div class="bg-stone-400 w-full h-56 sm:h-5/8 rounded-lg"></div>
+    </div>
+  </div>
+  <div class="col-span-2 p-1 sm:p-4 text-stone-300">
+    <ion-text>
+      <h2 class="text-xl sm:text-2xl">{{ product.name }}</h2>
+    </ion-text>
+
+    <ion-text>
+      <div class="flex gap-2 items-center">
+        <p class="font-semibold" *ngIf="product.discount > 0">
+          {{
+            product.price - product.price * (product.discount / 100)
+              | currency : "" : "$" : "1.0-2"
+          }}
+        </p>
+        <p
+          [ngClass]="{
+            'line-through font-light text-stone-500': product.discount > 0,
+            'font-semibold': product.discount === 0
+          }"
+        >
+          {{ product.price | currency : "" : "$" : "1.0-2" }}
+        </p>
+        <div
+          *ngIf="product.discount > 0"
+          class="px-1 bg-yellow-500 text-stone-800 w-fit lowercase text-xs"
+        >
+          {{ product.discount }}% off
+        </div>
+      </div>
+    </ion-text>
+    <ion-text class="">
+      <p class="mt-8 text-sm sm:text-base leading-loose">
+        {{ product.description }}
+      </p>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores,
+        dolor! Sunt obcaecati, cum delectus fuga temporibus deserunt rem
+        assumenda et quod vero officia debitis architecto incidunt ullam libero.
+        Dolore porro quis voluptate quaerat expedita soluta quidem sint
+        veritatis? Recusandae vitae, consequatur ut ipsa necessitatibus error
+        ducimus quis labore soluta fuga?
+      </p>
+    </ion-text>
+  </div>
+</div>
