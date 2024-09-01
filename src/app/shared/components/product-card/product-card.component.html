@@ -30,7 +30,8 @@
         >{{ product.price | currency : "" : "$" : "1.0-2" }}</span
       >
       <span class="font-bold text-stone-200" *ngIf="product.discount > 0">{{
-        (product.price * product.discount) / 100 | currency : "" : "$" : "1.0-2"
+        product.price - (product.price * product.discount) / 100
+          | currency : "" : "$" : "1.0-2"
       }}</span>
     </div>
   </ion-card-content>
