@@ -39,7 +39,15 @@ export class ProductService {
    */
   getProduct(id: number): Observable<Product>  {
     return this.productApiService.fetchProducts().pipe(
-      map(product => product.find(product => product.id == id)!),
+      // Return product if found,
+      // Throws error if not found
+      map(products => {
+        let product = products.find(product => product.id == id)!
+        if(product === undefined)
+        {
+          throw new Error('Data is undefined')
+        } return product;
+      })
     )
   }
 

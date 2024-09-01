@@ -13,7 +13,7 @@ const routes: Routes = [
     component: ProductsPage,
     children: [
       {
-        path:'list',
+        path:'',
         component: ProductListComponent,
         title: 'Product Catalog | List'
       },
@@ -28,7 +28,7 @@ const routes: Routes = [
       {
         path:'**',
         pathMatch: 'full',
-        redirectTo: 'list'
+        redirectTo: ''
       }
     ]
   }
